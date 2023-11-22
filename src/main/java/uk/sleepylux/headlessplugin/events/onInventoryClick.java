@@ -42,11 +42,11 @@ public class onInventoryClick implements Listener {
 
         JSONObject reviveeJson = PlayerManager.parse(PlayerManager.get(revivee.getUniqueId().toString()));
         ItemStack skull = HeadManager.Create(plugin, revivee);
-        skull.setAmount(4);
+        skull.setAmount(1);
 
         AtomicBoolean hasHeads = new AtomicBoolean(false);
         player.getInventory().forEach(item -> {
-            if (item != null && item.isSimilar(clickedItem) && item.getAmount() >= 4) {
+            if (item != null && item.isSimilar(clickedItem) && item.getAmount() >= 1) {
                 hasHeads.set(true);
                 player.getInventory().removeItem(item);
             }
@@ -57,7 +57,7 @@ public class onInventoryClick implements Listener {
         }
 
         reviveeJson.put("dead", false);
-        reviveeJson.put("lives", 4);
+        reviveeJson.put("lives", 1);
 
         inv.close();
         PlayerManager.set(revivee.getUniqueId().toString(), reviveeJson);
